@@ -22,3 +22,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/profile/{username}', 'ProfileController@profile');
 
 Route::resource('articles','ArticlesController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::get('/like/isLiked/{article_id}','LikeController@isLiked');
+
+Route::post('/like/likePost','LikeController@likePost');
+Route::post('/like/unlikePost','LikeController@unlikePost');

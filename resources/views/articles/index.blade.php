@@ -23,9 +23,7 @@
                                 <button class="btn btn-danger btn-sm">Delete</button>
                             </form>
                         @endif
-                        <div>
-                            <i class="fa fa-heart pull-right" style="margin-top: 10px"></i>
-                        </div>
+                        <heart :article="{{ $article->id }}"></heart>
                     </div>
                 </div>
             </div>
