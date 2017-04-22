@@ -15,16 +15,7 @@
                             <label for="content">Content</label>
                             <textarea name="content" class="form-control"></textarea>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="live"> Live
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="post_on">Post on</label>
-                            <input type="datetime-local" name="post_on" class="form-control"> 
-                        </div>
-                        <input type="submit" class="btn btn-success pull-right">    
+                        <input type="submit" class="btn btn-success center-block">
                     </form>
                 </div>
             </div>

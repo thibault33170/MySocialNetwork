@@ -22,6 +22,41 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <style>
+
+        .profile-image{
+            max-width: 50px;
+            border: 4px solid #fff;
+            border-radius: 100%;
+            box-shadow: 0 2px 2px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
+        }
+
+        .in  #search-form {
+            display: inline-flex;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .in #search-submit {
+            margin-left: 5px !important;
+        }
+
+        .in > ul {
+            float: none !important;
+            display: inline-table;
+        }
+        
+        .in {
+            text-align: center;
+        }
+
+        .in li {
+            display: inline;
+        }
+
+    </style>
 </head>
 <body>
     <div id="app">
@@ -49,15 +84,22 @@
                         &nbsp;
                     </ul>
 
+                    <form id="search-form" class="navbar-form pull-left" action="/search" method="POST">
+                        {{ csrf_field() }}
+                        <input class="form-control" type="text" name="search" placeholder="Search...">
+                        <button id="search-submit" class="btn" type="submit">Search</button>
+                    </form>
+
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right pull-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img class="profile-image" src="/uploads/avatars/{{ Auth::user()->avatar }}">
+                                <a href="#" class="dropdown-toggle" style="display: inline;" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

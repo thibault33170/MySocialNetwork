@@ -16,6 +16,11 @@ class LikeController extends Controller
         return response()->json($isLiked);
     }
 
+    public function number ($article_id) {
+        $count = Like::where('article_id', $article_id)->count();
+        return response()->json($count);
+    }
+
     public function likePost(Request $request) {
         Like::create($request->all() + ['user_id' => Auth::id()]);
     }

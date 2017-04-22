@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         @forelse($articles as $article)
-            <div class="col-md-4 col-md-offset-4" >
+            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12" >
                 <div class="panel panel-default">
                     <div class="panel-heading" >
-                        <span>Renato hysa</span>
+                        <span>{{ $article->owner }}</span>
                         <span class="pull-right">
                             {{ $article->created_at->diffForHumans() }}
                         </span>
@@ -15,15 +15,13 @@
                         {{ $article->shortContent }} ...
                         <a href="/articles/{{ $article->id }}">Read more</a>
                     </div>
-                    <div class="panel-footer clearfix" style="background-color : white">
+                    <div class="panel-footer form-inline clearfix" style="background-color : white">
                         @if($article->user_id == Auth::id())
-                            <form action="articles/{{ $article->id  }}" class="pull-right"  style="margin-left: 25px" method="POST">
-                                {{ csrf_field()  }}
-                                {{ method_field('DELETE')  }}
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+                            <trash :article="{{ $article->id }}"></trash>
                         @endif
-                        <heart :article="{{ $article->id }}"></heart>
+                        <span class="pull-left"><a style="color: grey" href="/articles/{{ $article->id }}">{{ $article->commentsNumber }}</a></span>
+                            <heart class="pull-right" :article="{{ $article->id }}"></heart>
+                            <comment :article="{{ $article->id }}" :user="{{ Auth::id() }}"></comment>
                     </div>
                 </div>
             </div>
@@ -31,10 +29,10 @@
             No articles.
         @endforelse
     </div>
-
     <div class="row">
-        <div class="col-md-4 col-md-offset-4 center">
+        <div class="col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-4">
             {{ $articles->links() }}
         </div>
     </div>
+
 @endsection

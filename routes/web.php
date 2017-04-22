@@ -17,16 +17,41 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => 'auth'], function () {
+    /**
+     * Home route
+     */
+    Route::get('/home', 'HomeController@index');
 
-Route::get('/profile/{username}', 'ProfileController@profile');
+    /**
+     * Profile routes
+     */
+    Route::get('/profile/{username}', 'ProfileController@profile');
+    Route::post('profile', 'ProfileController@updateAvatar');
+    Route::post('/search', 'ProfileController@searchProfile');
 
-Route::resource('articles','ArticlesController');
-Auth::routes();
+    /**
+     * Like routes
+     */
+    Route::get('/like/isLiked/{article_id}','LikeController@isLiked');
+    Route::get('/like/number/{article_id}','LikeController@number');
+    Route::post('/like/likePost','LikeController@likePost');
+    Route::post('/like/unlikePost','LikeController@unlikePost');
 
-Route::get('/home', 'HomeController@index');
+    /**
+     * Article routes
+     */
+    Route::resource('articles','ArticlesController');
 
-Route::get('/like/isLiked/{article_id}','LikeController@isLiked');
+    /**
+     * Comments routes
+     */
+    Route::resource('comments','CommentsController');
 
-Route::post('/like/likePost','LikeController@likePost');
-Route::post('/like/unlikePost','LikeController@unlikePost');
+    /**
+     * Follow routes
+     */
+    Route::post('/user/follow', 'FollowsController@follow');
+    Route::post('/user/unfollow', 'FollowsController@unfollow');
+    Route::post('/user/isFollowed', 'FollowsController@isfollowed');
+});

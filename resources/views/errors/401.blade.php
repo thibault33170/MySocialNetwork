@@ -39,9 +39,9 @@
     </head>
     <body>
         <div class="container">
-            <div class="title">404</div>
+            <div class="title">401</div>
             <div class="content">
-                <div class="title">Nothing was found.</div>
+                <div class="title">Unauthorized.</div>
             </div>
         </div>
     </body>
