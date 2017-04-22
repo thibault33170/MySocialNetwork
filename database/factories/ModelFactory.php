@@ -29,7 +29,32 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
     return [
         'user_id' => App\User::all()->random()->id,
         'content' => $faker->paragraph(5),
-        'live' => $faker->boolean(),
-        'post_on' => Carbon\Carbon::parse('+1 week'),
+    ];
+});
+
+$factory->define(App\Like::class, function (Faker\Generator $faker) {
+
+    return [
+        'user_id' => App\User::all()->random()->id,
+        'article_id' => App\Article::all()->random()->id,
+    ];
+});
+
+$factory->define(App\Follow::class, function (Faker\Generator $faker) {
+
+    $follower = App\User::all()->random()->id;
+    $target = App\User::where('id', '!=', $follower)->get()->random()->id;
+    return [
+        'follower_id' => $follower,
+        'target_id' => $target,
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+
+    return [
+        'article_id' => $follower = App\Article::all()->random()->id,
+        'user_id' => $follower = App\User::all()->random()->id,
+        'content' => $faker->paragraph(2),
     ];
 });

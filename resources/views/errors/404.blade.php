@@ -39,6 +39,7 @@
     </head>
     <body>
         <div class="container">
+            <div class="title">404</div>
             <div class="content">
                 <div class="title">Nothing was found.</div>
             </div>
