@@ -7,6 +7,7 @@ use App\User;
 use Log;
 use Image;
 use Auth;
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -27,18 +28,28 @@ class ProfileController extends Controller
     }
 
     public function updateAvatar (Request $request) {
-        \Log::info($request->avatar);
-        if ($request->hasFile('avatar')) {
-            $avatar = $request->file('avatar');
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300,300)->save(public_path('uploads\\avatars\\' . $filename));
 
-            $user = Auth::user();
-            $user->avatar = $filename;
 
-            $user->save();
+        $validator = Validator::make($request->all(), [
+           'avatar' => 'required|file|mimes:png,jpg,jpeg'
+        ]);
 
-            return view('user.profile', compact('user'));
+        if ($validator->fails()) {
+            $username = \Auth::user()->username;
+            return redirect('/profile/'. $username)->withErrors($validator);
+        } else {
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $filename = time() . '.' . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->resize(300,300)->save(public_path('uploads\\avatars\\' . $filename));
+
+                $user = Auth::user();
+                $user->avatar = $filename;
+
+                $user->save();
+
+                return view('user.profile', compact('user'));
+            }
         }
     }
 }

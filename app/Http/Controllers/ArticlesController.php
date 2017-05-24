@@ -30,9 +30,16 @@ class ArticlesController extends Controller
 
     public function store(Request $request)
     {
-        Article::create($request->all());
+        $validator = \Validator::make($request->all(), [
+            'content' => 'required'
+        ]);
 
-        return redirect('/articles');
+        if ($validator->fails()) {
+            return redirect('/articles/create')->withErrors($validator);
+        } else {
+            Article::create($request->all());
+            return redirect('/articles');
+        }
     }
 
     public function show($id)
@@ -62,11 +69,18 @@ class ArticlesController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $article = Article::findOrFail($id);
+        $validator = \Validator::make($request->all(), [
+            'content' => 'required'
+        ]);
 
-        $article->update($request->all());
+        if ($validator->fails()) {
+            return redirect('/articles/' . $id . '/edit')->withErrors($validator);
+        } else {
+            $article = Article::findOrFail($id);
+            $article->update($request->all());
 
-        return redirect('/articles');
+            return redirect('/articles');
+        }
     }
 
     public function destroy($id) {

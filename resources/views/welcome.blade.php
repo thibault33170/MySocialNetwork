@@ -75,15 +75,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{ config('app.name', 'Laravel') }}
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://twitter.com/thibault_faivre?lang=fr">Twitter</a>
+                    <a href="https://www.linkedin.com/in/thibault-faivre-3b2383a9">Linkedin</a>
+                    <a href="https://github.com/thibault33170/MySocialNetwork">GitHub</a>
                 </div>
             </div>
         </div>

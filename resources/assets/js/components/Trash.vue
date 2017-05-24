@@ -1,6 +1,6 @@
 <template>
     <div>
-        <i @click="deletePost" class="fa fa-trash pull-right" style="margin-top: 10px; margin-left: 1em;"></i>
+        <i @click="deletePost" class="fa fa-trash pull-right" style="margin-left: 1em; margin-top: 12px"></i>
     </div>
 </template>
 

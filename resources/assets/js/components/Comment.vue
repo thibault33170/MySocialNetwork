@@ -1,7 +1,7 @@
 <template>
     <div style="padding: 0;" class="pull-left col-lg-6 col-lg-offset-2 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-10">
         <input v-on:keyup.enter="send" type="text" v-model="comment" style="padding-right: 0;" class="form-control" placeholder="Commenter ...">
-        <button @click.prevent="send" class="btn btn-default "><i class="fa fa-commenting"></i></button>
+        <button @click.prevent="send" style="height: 35px" class="btn btn-default"><i class="fa fa-commenting"></i></button>
     </div>
 </template>
 

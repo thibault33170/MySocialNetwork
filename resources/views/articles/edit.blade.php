@@ -16,6 +16,11 @@
                             <label for="content">Content</label>
                             <textarea name="content" class="form-control">{{ $article->content }}</textarea>
                         </div>
+                        @if ($errors->count() > 0)
+                            <div class="help-block alert alert-danger">
+                                {{ $errors->first('content') }}
+                            </div>
+                        @endif
                         <input type="submit" class="btn btn-success pull-right">    
                     </form>
                 </div>

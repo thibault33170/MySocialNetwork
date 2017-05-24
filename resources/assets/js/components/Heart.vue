@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span style="margin-top: 8px">
         {{ totalLikes }}
         <i @click="likePost" v-bind:class="{ red : isLiked }" class="fa fa-heart"></i>
     </span>

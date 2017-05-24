@@ -19,7 +19,7 @@
                         @if($article->user_id == Auth::id())
                             <trash :article="{{ $article->id }}"></trash>
                         @endif
-                        <span class="pull-left"><a style="color: grey" href="/articles/{{ $article->id }}">{{ $article->commentsNumber }}</a></span>
+                        <span class="pull-left" style="margin-top: 9px"><a style="color: grey;" href="/articles/{{ $article->id }}">{{ $article->commentsNumber }}</a></span>
                             <heart class="pull-right" :article="{{ $article->id }}"></heart>
                             <comment :article="{{ $article->id }}" :user="{{ Auth::id() }}"></comment>
                     </div>

@@ -4,6 +4,5 @@
 .idea/
 .env
 public/css/app.css.map
-/public/storage
-Homestead.json
-Homestead.yaml
+/storage
+/public/uploads

@@ -12,6 +12,7 @@
 @section('content')
     @forelse($results as $result)
     <div class="row">
+        <a style="text-decoration: none; color: grey" href="/profile/{{ $result->username }}">
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
@@ -23,7 +24,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
+    </div>
     @empty
         empty
     @endforelse
